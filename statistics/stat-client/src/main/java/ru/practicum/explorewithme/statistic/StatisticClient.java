@@ -39,14 +39,4 @@ public class StatisticClient extends BaseClient {
         endpointHitDto.setTimestamp(Timestamp.from(Instant.now()));
         return post("/hit", endpointHitDto);
     }
-
-    public ResponseEntity<Object> getStat(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("start", start);
-        params.put("end", end);
-        params.put("uris", uris);
-        params.put("unique", unique);
-        return get("/stats", params);
-    }
-
 }

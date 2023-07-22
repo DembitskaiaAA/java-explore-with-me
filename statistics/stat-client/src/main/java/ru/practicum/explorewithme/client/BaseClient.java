@@ -7,6 +7,7 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class BaseClient {
     protected final RestTemplate rest;
@@ -29,31 +30,20 @@ public class BaseClient {
         return responseBuilder.build();
     }
 
-    protected ResponseEntity<Object> get(String path, Map<String, Object> parameters) {
-        return makeAndSendRequest(HttpMethod.GET, path, parameters, null);
-    }
 
     protected <T> ResponseEntity<Object> post(String path, T body) {
-        return post(path, null, body);
+        return makeAndSendRequest(HttpMethod.POST, path, body);
     }
 
-    protected <T> ResponseEntity<Object> post(String path, Map<String, Object> parameters, T body) {
-        return makeAndSendRequest(HttpMethod.POST, path, parameters, body);
-    }
+    private <T> ResponseEntity<Object> makeAndSendRequest(HttpMethod method, String path, T body) {
+        HttpEntity<T> requestEntity = new HttpEntity<>(Objects.requireNonNull(body));
 
-    private <T> ResponseEntity<Object> makeAndSendRequest(HttpMethod method, String path, Map<String, Object> parameters, T body) {
-        HttpEntity<T> requestEntity = new HttpEntity<>(body);
-
-        ResponseEntity<Object> shareitServerResponse;
+        ResponseEntity<Object> serverResponse;
         try {
-            if (parameters != null && !parameters.isEmpty()) {
-                shareitServerResponse = rest.exchange(path, method, requestEntity, Object.class, parameters);
-            } else {
-                shareitServerResponse = rest.exchange(path, method, requestEntity, Object.class);
-            }
+            serverResponse = rest.exchange(path, method, requestEntity, Object.class);
         } catch (HttpStatusCodeException e) {
             return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsByteArray());
         }
-        return prepareGatewayResponse(shareitServerResponse);
+        return prepareGatewayResponse(serverResponse);
     }
 }
