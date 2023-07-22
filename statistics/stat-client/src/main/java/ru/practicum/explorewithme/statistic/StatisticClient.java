@@ -13,10 +13,6 @@ import ru.practicum.explorewithme.client.BaseClient;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class StatisticClient extends BaseClient {
