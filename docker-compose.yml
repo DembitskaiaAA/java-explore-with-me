@@ -1,24 +1,22 @@
 version: '3.1'
 services:
   stats-server:
-    build:
-       context: ./statistics/stat-service
-       dockerfile: Dockerfile
-    image: stat_service_image
-    container_name: stat_service_container
-    restart: on-failure
+    build: ./statistics/stat-service/
+    container_name: stats-server
     ports:
       - "9090:9090"
     depends_on:
       - stats-db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats_db_container:5432/explorewithme
+      - DB_HOST=stats-db
+      - DB_PORT=5432
+      - DB_NAME=explorewithme
+      - DB_USER=explore
+      - DB_PASSWORD=explore
 
   stats-db:
     image: postgres:14-alpine
-    container_name: stats_db_container
-    volumes:
-      - /var/lib/postgresql/data/
+    container_name: stats-db
     ports:
       - "6541:5432"
     environment:
@@ -27,26 +25,24 @@ services:
       - POSTGRES_PASSWORD=explore
 
   ewm-service:
-    build: ./main-service
-    image: main_service_image
-    container_name: main_service_container
-    restart: on-failure
+    build: ./main-service/
+    container_name: ewm-service
     ports:
       - "8080:8080"
     depends_on:
-      - stats-server
       - ewm-db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm_db_container:5432/ewm
-      - POSTGRES_USER=explore
-      - POSTGRES_PASSWORD=explore
-      - STAT-SERVICE-SERVER.URL=http://localhost:9090
+      - DB_HOST=ewm-db
+      - DB_PORT=5432
+      - DB_NAME=ewm
+      - DB_USER=explore
+      - DB_PASSWORD=explore
 
   ewm-db:
     image: postgres:14-alpine
-    container_name: ewm_db_container
+    container_name: ewm-db
     ports:
-      - "6540:5432"
+      - "6542:5432"
     environment:
       - POSTGRES_DB=ewm
       - POSTGRES_USER=explore
