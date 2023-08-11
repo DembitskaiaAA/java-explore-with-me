@@ -13,6 +13,7 @@ import ru.practicum.explorewithme.model.Category;
 import ru.practicum.explorewithme.repository.CategoryRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,7 +42,7 @@ public class CategoryServiceImp implements CategoryService {
         Category category = checkExist.checkCategoryOnExist(catId, String.format("Error when updating: category with id: %s is missing", catId));
         Category checkNameCategory = categoryRepository.findByName(categoryDto.getName());
         if (checkNameCategory != null) {
-            if (checkNameCategory.getId() != catId) {
+            if (!Objects.equals(checkNameCategory.getId(), catId)) {
                 throw new ConditionException(String.format("Category name %s already exists", categoryDto.getName()));
             }
         }
