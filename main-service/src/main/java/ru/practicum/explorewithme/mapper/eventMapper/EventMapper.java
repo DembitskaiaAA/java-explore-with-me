@@ -29,6 +29,6 @@ public interface EventMapper {
 
     EventShortDto transformEventToEventShortDto(Event event);
 
-    CategoryDto transformCategoryToCategoryDto(Category Category);
+    CategoryDto transformCategoryToCategoryDto(Category category);
 
 }

@@ -13,5 +13,5 @@ public interface CategoryMapper {
     @Mapping(target = "id", ignore = true)
     Category transformNewCategoryDtoToCategory(NewCategoryDto newCategoryDto);
 
-    CategoryDto transformCategoryToCategoryDto(Category Category);
+    CategoryDto transformCategoryToCategoryDto(Category category);
 }
