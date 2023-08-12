@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -20,14 +20,14 @@ import static ru.practicum.explorewithme.constants.TimePattern.DATATIMEPATTERN;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class EndpointHitDto {
     Integer id;
-    @NotBlank(message = "Service ID cannot be empty")
+    @NotEmpty(message = "Service ID cannot be empty")
     @Size(max = 100, message = "The maximum size of a service ID is 100 characters")
     String app;
 
-    @NotBlank(message = "Request URI cannot be empty")
+    @NotEmpty(message = "Request URI cannot be empty")
     String uri;
 
-    @NotBlank(message = "User IP cannot be empty")
+    @NotEmpty(message = "User IP cannot be empty")
     @Size(max = 20, message = "User IP cannot be more than 20 characters")
     String ip;
 

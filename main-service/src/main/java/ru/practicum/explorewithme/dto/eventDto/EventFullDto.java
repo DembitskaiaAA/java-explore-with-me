@@ -11,7 +11,7 @@ import ru.practicum.explorewithme.dto.userDto.UserShortDto;
 import ru.practicum.explorewithme.model.Category;
 import ru.practicum.explorewithme.model.Location;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
@@ -24,7 +24,7 @@ import static ru.practicum.explorewithme.constants.TimePattern.DATATIMEPATTERN;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class EventFullDto {
     Integer id;
-    @NotBlank(message = "Brief description of the event cannot be empty")
+    @NotEmpty(message = "Brief description of the event cannot be empty")
     String annotation;
 
     @NotNull(message = "Category of the event cannot be empty")
@@ -48,19 +48,19 @@ public class EventFullDto {
     Location location;
 
     @NotNull(message = "Information about payment of the event cannot be empty")
-    Boolean paid;
+    boolean paid;
 
     @PositiveOrZero(message = "The maximum number of event participants cannot be negative")
-    Integer participantLimit;
+    int participantLimit;
 
     @JsonFormat(pattern = DATATIMEPATTERN)
     LocalDateTime publishedOn;
 
-    Boolean requestModeration;
+    boolean requestModeration;
 
     PublishingStatus state;
 
-    @NotBlank(message = "Title of the event cannot be empty")
+    @NotEmpty(message = "Title of the event cannot be empty")
     String title;
 
     Long views;

@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 import ru.practicum.explorewithme.dto.categoryDto.CategoryDto;
 import ru.practicum.explorewithme.dto.userDto.UserShortDto;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -21,7 +21,7 @@ import static ru.practicum.explorewithme.constants.TimePattern.DATATIMEPATTERN;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class EventShortDto {
     Integer id;
-    @NotBlank(message = "Brief description of the event cannot be empty")
+    @NotEmpty(message = "Brief description of the event cannot be empty")
     String annotation;
 
     @NotNull(message = "Category of the event cannot be empty")
@@ -37,9 +37,9 @@ public class EventShortDto {
     UserShortDto initiator;
 
     @NotNull(message = "Information about payment of the event cannot be empty")
-    Boolean paid;
+    boolean paid;
 
-    @NotBlank(message = "Title of the event cannot be empty")
+    @NotEmpty(message = "Title of the event cannot be empty")
     String title;
 
     Long views;

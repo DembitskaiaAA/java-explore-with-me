@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @AllArgsConstructor
@@ -16,7 +17,7 @@ import javax.validation.constraints.Size;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class NewUserRequest {
     @Email
-    @NotBlank(message = "Email cannot be empty")
+    @NotEmpty(message = "Email cannot be empty")
     @Size(min = 6, max = 254, message = "User email length must be between 6 and 254")
     String email;
 

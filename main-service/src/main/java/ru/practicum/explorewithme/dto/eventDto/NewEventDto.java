@@ -17,14 +17,14 @@ import static ru.practicum.explorewithme.constants.TimePattern.DATATIMEPATTERN;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class NewEventDto {
-    @NotBlank(message = "Brief description of the event cannot be empty")
+    @NotEmpty(message = "Brief description of the event cannot be empty")
     @Size(min = 20, max = 2000, message = "Length of brief description of the event must be between 20 and 2000")
     String annotation;
 
     @NotNull(message = "Category of the event cannot be empty")
     Integer category;
 
-    @NotBlank(message = "Description of the event cannot be empty")
+    @NotEmpty(message = "Description of the event cannot be empty")
     @Size(min = 20, max = 7000, message = "Length of description of the event must be between 20 and 7000")
     String description;
 
@@ -36,16 +36,16 @@ public class NewEventDto {
 
     @NotNull(message = "Location of the event cannot be empty")
     Location location;
-    @Builder.Default
-    Boolean paid = false;
+
+    boolean paid;
 
     @PositiveOrZero(message = "The maximum number of event participants cannot be negative")
-    @Builder.Default
-    Integer participantLimit = 0;
-    @Builder.Default
-    Boolean requestModeration = true;
+    int participantLimit;
 
-    @NotBlank(message = "Title of the event cannot be empty")
+    @Builder.Default
+    boolean requestModeration = true;
+
+    @NotEmpty(message = "Title of the event cannot be empty")
     @Size(min = 3, max = 120, message = "Length of title of the event must be between 3 and 120")
     String title;
 }

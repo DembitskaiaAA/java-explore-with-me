@@ -6,7 +6,7 @@ import lombok.experimental.FieldDefaults;
 import ru.practicum.explorewithme.common.enums.PublishingStatus;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -24,7 +24,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @NotBlank
+    @NotEmpty
     String annotation;
 
     @NotNull
@@ -38,7 +38,7 @@ public class Event {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATATIMEPATTERN)
     LocalDateTime createdOn;
 
-    @NotBlank
+    @NotEmpty
     String description;
 
     @NotNull
@@ -71,7 +71,7 @@ public class Event {
     @Enumerated(EnumType.STRING)
     PublishingStatus state;
 
-    @NotBlank
+    @NotEmpty
     String title;
     @Builder.Default
     Long views = 0L;
