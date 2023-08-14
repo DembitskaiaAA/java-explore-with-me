@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ViewStats {
-    private String app;
-    private String uri;
-    private long hits;
+    String app;
+    String uri;
+    Long hits;
 }

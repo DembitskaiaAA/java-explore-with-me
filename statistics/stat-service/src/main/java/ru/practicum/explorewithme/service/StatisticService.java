@@ -1,13 +1,13 @@
 package ru.practicum.explorewithme.service;
 
 import ru.practicum.explorewithme.EndpointHitDto;
-import ru.practicum.explorewithme.model.ViewStats;
+import ru.practicum.explorewithme.ViewStatsDto;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface StatisticService {
     void postStatistic(EndpointHitDto endpointHitDto);
 
-    List<ViewStats> getStatistic(Timestamp start, Timestamp end, List<String> uris, Boolean unique);
+    List<ViewStatsDto> getStatistic(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique);
 }

@@ -9,12 +9,12 @@ import ru.practicum.explorewithme.model.ViewStats;
 
 @Component
 @Mapper(componentModel = "spring")
-public abstract class StatMapper {
-    public abstract EndpointHit transformEndpointHitDtoToEndpointHit(EndpointHitDto endpointHitDto);
+public interface StatMapper {
+    EndpointHit transformEndpointHitDtoToEndpointHit(EndpointHitDto endpointHitDto);
 
-    public abstract EndpointHitDto transformEndpointHitToEndpointHitDto(EndpointHit endpointHit);
+    EndpointHitDto transformEndpointHitToEndpointHitDto(EndpointHit endpointHit);
 
-    public abstract ViewStats transformViewStatsDtoToViewStats(ViewStatsDto viewStatsDto);
+    ViewStats transformViewStatsDtoToViewStats(ViewStatsDto viewStatsDto);
 
-    public abstract ViewStatsDto transformViewStatsToViewStatsDto(ViewStats viewStats);
+    ViewStatsDto transformViewStatsToViewStatsDto(ViewStats viewStats);
 }
