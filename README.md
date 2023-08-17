@@ -1,4 +1,4 @@
-## [Pull-request](https://github.com/DembitskaiaAA/java-explore-with-me/pull/5)
+## [Pull-request](https://github.com/DembitskaiaAA/java-explore-with-me/pull/6)
 
 # Сервис для организации совместного времяпровождения
 
