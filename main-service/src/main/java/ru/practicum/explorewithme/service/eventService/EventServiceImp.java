@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -220,7 +221,12 @@ public class EventServiceImp implements EventService {
     }
 
     @Override
-    public List<EventFullDto> getEventsByAdmin(List<Integer> users, List<PublishingStatus> states, List<Integer> categories, LocalDateTime rangeStart, LocalDateTime rangeEnd, Pageable pageable) {
+    public List<EventFullDto> getEventsByAdmin(List<Integer> users,
+                                               List<PublishingStatus> states,
+                                               List<Integer> categories,
+                                               LocalDateTime rangeStart,
+                                               LocalDateTime rangeEnd,
+                                               Pageable pageable) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Event> criteriaQuery = builder.createQuery(Event.class);
         Root<Event> root = criteriaQuery.from(Event.class);
@@ -303,6 +309,7 @@ public class EventServiceImp implements EventService {
                 }
                 event.setState(PublishingStatus.PUBLISHED);
                 event.setPublishedOn(LocalDateTime.now());
+                event.setComments(new HashSet<>());
                 event.setViews(0L);
             } else if (updateEventAdminRequest.getStateAction().equals(TypesEventsAdminResponses.REJECT_EVENT)) {
                 if (event.getPublishedOn() != null) {

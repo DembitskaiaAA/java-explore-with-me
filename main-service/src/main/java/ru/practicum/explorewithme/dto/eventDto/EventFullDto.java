@@ -9,12 +9,14 @@ import lombok.experimental.FieldDefaults;
 import ru.practicum.explorewithme.common.enums.PublishingStatus;
 import ru.practicum.explorewithme.dto.userDto.UserShortDto;
 import ru.practicum.explorewithme.model.Category;
+import ru.practicum.explorewithme.model.Comment;
 import ru.practicum.explorewithme.model.Location;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import static ru.practicum.explorewithme.constants.TimePattern.DATATIMEPATTERN;
 
@@ -62,6 +64,8 @@ public class EventFullDto {
 
     @NotEmpty(message = "Title of the event cannot be empty")
     String title;
+
+    Set<Comment> comments;
 
     Long views;
 }

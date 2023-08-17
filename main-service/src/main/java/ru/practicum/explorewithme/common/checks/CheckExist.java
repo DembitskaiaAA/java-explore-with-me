@@ -18,9 +18,15 @@ public class CheckExist {
     private RequestRepository requestRepository;
     @Autowired
     private CompilationRepository compilationRepository;
+    @Autowired
+    private CommentRepository commentRepository;
 
     public Event checkEventOnExist(Integer id, String message) {
         return eventRepository.findById(id).orElseThrow(() -> new NotFoundException(message));
+    }
+
+    public Comment checkCommentOnExist(Integer id, String message) {
+        return commentRepository.findById(id).orElseThrow(() -> new NotFoundException(message));
     }
 
     public Location checkLocationOnExist(Integer id, String message) {
