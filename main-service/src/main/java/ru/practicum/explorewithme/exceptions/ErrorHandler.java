@@ -57,4 +57,11 @@ public class ErrorHandler {
         return new ApiError(e.getMessage(), "Database not working properly.",
                 HttpStatus.BAD_REQUEST.getReasonPhrase().toUpperCase(), LocalDateTime.now().format(DATE_TIME_FORMATTER));
     }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiError handleRequestParametersException(RequestParametersException e) {
+        return new ApiError(e.getMessage(), "Incorrectly made request.",
+                HttpStatus.BAD_REQUEST.getReasonPhrase().toUpperCase(), LocalDateTime.now().format(DATE_TIME_FORMATTER));
+    }
 }

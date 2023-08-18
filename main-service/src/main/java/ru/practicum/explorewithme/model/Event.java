@@ -1,6 +1,7 @@
 package ru.practicum.explorewithme.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.practicum.explorewithme.common.enums.PublishingStatus;
@@ -9,13 +10,15 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import static ru.practicum.explorewithme.constants.TimePattern.DATATIMEPATTERN;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Builder
+@Getter
+@Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "EVENTS")
@@ -73,6 +76,10 @@ public class Event {
 
     @NotEmpty
     String title;
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @OrderBy("created DESC")
+    Set<Comment> comments;
     @Builder.Default
     Long views = 0L;
 }
